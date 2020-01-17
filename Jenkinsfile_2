@@ -1,0 +1,20 @@
+node {
+    
+	
+
+    env.AWS_ECR_LOGIN=true
+    def newApp
+    def registry = 'gustavoapolinario/microservices-node-todo-frontend'
+    def registryCredential = 'dockerhub'
+	
+	stage('Git') {
+		git 'https://github.com/gAnEsH1058/node-todo-frontend.git'
+	}
+	stage('Build') {
+		sh 'npm install'
+	}
+	stage('Test') {
+		sh 'npm test'
+	}
+	   
+}
