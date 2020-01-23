@@ -17,8 +17,8 @@ pipeline {
 					echo "PATH = ${PATH}";
 					echo "MAVEN_HOME = ${M2_HOME}";
                                         echo env;
-					echo "this is the project id environment"+GOOGLE_PROJECT_ID;
-					npm install -g @angular/cli@6.0.8;
+					echo "this is the project id environment: ${GOOGLE_PROJECT_ID}";
+					sudo chown -R whoami /usr/local/lib/node_modules
                                         npm install
 				'''
 				
