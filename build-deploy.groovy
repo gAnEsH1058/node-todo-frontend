@@ -8,13 +8,7 @@ pipeline {
 		GOOGLE_SERVICE_ACCOUNT_KEY = credentials('gcp account service account');
         }
 
-	tools { 
-    
-        git '/usr/local/bin/node'
-        jdk '/usr/bin/java'
-        nodejs '/usr/local/bin/node'
-
-       }
+	
 	stages{
 		stage('Init'){
 			steps{
