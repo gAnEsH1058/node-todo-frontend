@@ -10,9 +10,9 @@ pipeline {
 
 	tools { 
     
-        git 'localGit'
-        jdk 'localJava'
-        nodejs 'localNode'
+        git '/usr/local/bin/node'
+        jdk '/usr/bin/java'
+        nodejs '/usr/local/bin/node'
 
        }
 	stages{
