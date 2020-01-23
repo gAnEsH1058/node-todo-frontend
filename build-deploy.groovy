@@ -31,9 +31,11 @@ pipeline {
 
 			
 		}
-      		stage('Preparation') { // for display purposes
+      		stage('Preparation') {
+			steps{// for display purposes
      			 // Get some code from a GitHub repository
      		 git 'https://github.com/gAnEsH1058/node-todo-frontend.git'
+			}
 		}
 		stage('Build'){
 			steps{
