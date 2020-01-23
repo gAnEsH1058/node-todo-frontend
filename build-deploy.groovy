@@ -5,7 +5,7 @@ pipeline {
 	environment {
                 GOOGLE_PROJECT_ID = 'sample-test-gcp-project';
 		
-		GOOGLE_SERVICE_ACCOUNT_KEY = credentials('gcp account service account');
+		GOOGLE_SERVICE_ACCOUNT_KEY = credentials('sample-test-gcp-project');
         }
 
 	
