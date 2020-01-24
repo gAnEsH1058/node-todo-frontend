@@ -16,5 +16,17 @@ node {
 	stage('Test') {
 		sh 'npm test'
 	}
+	stage('Building image') {
+       	sh '''
+	docker build -t ${DOCKER_REGISTRY_URL}/${DOCKER_PROJECT_NAMESPACE}/${IMAGE_NAME}:${RELEASE_TAG} --build-arg APP_NAME=${IMAGE_NAME}  -f app/Dockerfile app/.
+	'''
+	}
+	stage('Registring image') {
+     	sh '''
+	echo $DOCKER_PASSWD | docker login --username ${DOCKER_USERNAME} --password-stdin ${DOCKER_REGISTRY_URL} 
+	docker push ${DOCKER_REGISTRY_URL}/${DOCKER_PROJECT_NAMESPACE}/${IMAGE_NAME}:${RELEASE_TAG}
+	docker logout
+	'''
+        }
 	   
 }
