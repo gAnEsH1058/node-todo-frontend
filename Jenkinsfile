@@ -4,7 +4,7 @@ node {
 
     env.AWS_ECR_LOGIN=true
     def newApp
-    def registry = 'gustavoapolinario/microservices-node-todo-frontend'
+    def registry = 'https://index.docker.io/v1/'
     def registryCredential = 'dockerhub'
 	
 	stage('Git') {
@@ -17,14 +17,14 @@ node {
 		sh 'npm test'
 	}
 	stage('Building image') {
-        docker.withRegistry( 'https://' + registry, registryCredential ) {
+       docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
 		    def buildName = registry + ":$BUILD_NUMBER"
 			newApp = docker.build buildName
 			newApp.push()
         }
 	}
 	stage('Registring image') {
-        docker.withRegistry( 'https://' + registry, registryCredential ) {
+        docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
     		newApp.push 'latest2'
         }
 	}
