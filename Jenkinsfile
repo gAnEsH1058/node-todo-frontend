@@ -18,7 +18,7 @@ node {
 	}
 	 stage('docker build/push') {
      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-           def app = docker.build("moregane/modejs:${commit_id}", '.').push()
+           def app = docker.build("moregane/todo-note:$BUILD_NUMBER", '.').push()
     	 } 
  	}
 	
