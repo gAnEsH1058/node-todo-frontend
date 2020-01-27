@@ -21,7 +21,7 @@ node {
            def app = docker.build("moregane/modejs:${commit_id}", '.').push()
     	 } 
  	}
-	}
+	
   //  stage('Removing image') {
     //    sh "docker rmi $registry:$BUILD_NUMBER"
       //  sh "docker rmi $registry:latest"
