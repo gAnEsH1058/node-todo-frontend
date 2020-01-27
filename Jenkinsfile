@@ -8,7 +8,7 @@ node {
     def registryCredential = 'dockerhub'
 	
 	stage('Git') {
-		git 'https://github.com/gustavoapolinario/node-todo-frontend'
+		git 'https://github.com/gAnEsH1058/node-todo-frontend'
 	}
 	stage('Build') {
 		sh 'npm install'
@@ -18,7 +18,7 @@ node {
 	}
 	stage('Building image') {
        docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-		    def buildName = registry + ":$BUILD_NUMBER"
+		    def buildName = moregane + ":$BUILD_NUMBER"
 			newApp = docker.build buildName
 			newApp.push()
         }
