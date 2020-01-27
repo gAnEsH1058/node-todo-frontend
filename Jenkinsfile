@@ -2,7 +2,7 @@ node {
     
 	
 
-    env.AWS_ECR_LOGIN=true
+ 
     def newApp
     def registry = 'https://index.docker.io/v1/'
     def registryCredential = 'dockerhub'
@@ -16,21 +16,15 @@ node {
 	stage('Test') {
 		sh 'npm test'
 	}
-	stage('Building image') {
-       docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-		    def buildName = moregane + ":$BUILD_NUMBER"
-			newApp = docker.build buildName
-			newApp.push()
-        }
+	 stage('docker build/push') {
+     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+           def app = docker.build("moregane/modejs:${commit_id}", '.').push()
+    	 } 
+ 	}
 	}
-	stage('Registring image') {
-        docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-    		newApp.push 'latest2'
-        }
-	}
-    stage('Removing image') {
-        sh "docker rmi $registry:$BUILD_NUMBER"
-        sh "docker rmi $registry:latest"
-    }
+  //  stage('Removing image') {
+    //    sh "docker rmi $registry:$BUILD_NUMBER"
+      //  sh "docker rmi $registry:latest"
+    //}
     
 }
